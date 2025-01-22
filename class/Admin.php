@@ -1,5 +1,5 @@
 <?php 
-session_start();
+require_once __DIR__."/../session_start.php";
 require_once __DIR__. "/User.php";
 
 class Admin extends User{
@@ -19,7 +19,6 @@ class Admin extends User{
                 $_SESSION['userId'] = $user['id'];
                 $_SESSION['name'] = $user['name'];
                 $_SESSION['role'] = $user['role'];
-                echo "hello Admin {$_SESSION['name']}";
                 return true;
             }
             else{
@@ -41,15 +40,15 @@ class Admin extends User{
     public static function activeEnseignant($userID){
         $db = Database::getInstance()->getConnection();
 
-        $CheckStatusQuery = "select status from user where id = ?";
-        $stmtCheckStatus = $db->prepare($CheckStatusQuery);
-        $stmtCheckStatus->execute([$userID]);
-        $user = $stmtCheckStatus->fetch(PDO::FETCH_ASSOC);
+        // $CheckStatusQuery = "select status from user where id = ?";
+        // $stmtCheckStatus = $db->prepare($CheckStatusQuery);
+        // $stmtCheckStatus->execute([$userID]);
+        // $user = $stmtCheckStatus->fetch(PDO::FETCH_ASSOC);
         
-        if($user && $user['status'] == 'active'){
-            $_SESSION['status'] = 'welcome';
-            return true;
-        }
+        // if($user && $user['status'] == 'active'){
+        //     $_SESSION['status'] = 'welcome';
+        //     return true;
+        // }
 
         $UpdateStatusQuery = "update user set status = 'active' where id = ?";
         $stmt = $db->prepare($UpdateStatusQuery);
@@ -123,7 +122,7 @@ class Admin extends User{
         $sql = "SELECT categories.nom, COUNT(cours.idCours) AS coursNbr 
                 FROM categories
                 LEFT JOIN cours ON categories.idCategory = cours.Categorie_id
-                GROUP BY categories.nom, categories.idCategory;";
+                GROUP BY categories.nom";
         
         $stmt = $db->prepare($sql);
         if($stmt->execute()){
@@ -157,6 +156,12 @@ class Admin extends User{
         if($stmt->execute()){
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
+    }
+    public static function logout()
+    {
+        session_unset();
+        session_destroy();
+        header("Location: /edex-html/pages/admin/login.php");
     }
 }
 

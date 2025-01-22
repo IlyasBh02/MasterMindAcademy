@@ -21,11 +21,11 @@ class tag{
                 $stmt->execute([$tag]);
             }
             $db->commit();
-            echo "tags inserted successfully";
+            return true;
         }
         catch(PDOException $e){
             $db->rollBack();
-            echo "failed to insert multiples tags".$e->getMessage();
+            return false;
         }
     }
     // this to show the formateur all tags
@@ -78,3 +78,10 @@ class tag{
         }
     }
 }
+
+// $arragyTags = [1,2,3];
+// $obj = new tag($arragyTags);
+// $obj->attachTagToCours(1);
+// $obj = new tag($arragyTags);
+// $obj->createTags();
+

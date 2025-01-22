@@ -1,4 +1,4 @@
-<?php
+    <?php
     require_once __DIR__. "/./Database.php";
     abstract class User{
         protected $id;
@@ -34,9 +34,5 @@
         }
 
         abstract public static function login($email,$password);
-        public static function logout(){
-            session_unset();
-            session_destroy();
-            header("Location: /edex-html/pages/user/register.php");
-        }
+        abstract public static function logout();
     }

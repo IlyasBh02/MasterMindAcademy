@@ -1,7 +1,6 @@
 <?php 
-if (session_status() == PHP_SESSION_NONE) {
-    session_start(); // Only start the session if it's not already active
-}require_once __DIR__. "/./User.php";
+require_once __DIR__."/../session_start.php";
+require_once __DIR__. "/./User.php";
 class Etudiant extends User{
     public function __construct($nom,$email,$password)
     {
@@ -41,4 +40,11 @@ class Etudiant extends User{
            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     }
+    public static function logout()
+    {
+        session_unset();
+        session_destroy();
+        header("Location: /MASTERMINDACADEMY/pages/user/register.php");
+    }
 }
+

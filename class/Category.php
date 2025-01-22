@@ -14,7 +14,7 @@ class Category{
         $sql = "select * from categories";
         $stmt = $db->prepare($sql);
         $stmt->execute();
-        return $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function createCategory(){

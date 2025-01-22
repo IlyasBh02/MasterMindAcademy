@@ -33,7 +33,9 @@ abstract class course
     {
         $db = Database::getInstance()->getConnection();
         $offset = ($page - 1) * $itemPerPage;
-        $sql = "select cours.*,categories.nom as CategoryName,user.name as Enseignant , 
+        $sql = "select cours.*,
+        categories.nom as CategoryName,
+        user.name as Enseignant , 
         group_concat(tags.nom) as tags from cours 
         join categories on categories.idCategory = cours.categorie_id 
         join user on user.id = cours.enseignant_id 
@@ -60,6 +62,23 @@ abstract class course
         }
         else{
             return 0;
+        }
+    }
+    // to show all the data to the admin
+    public static function showAllCourses(){
+        $db = Database::getInstance()->getConnection();
+        $sql = "select cours.*,
+        categories.nom as CategoryName,
+        user.name as Enseignant , 
+        group_concat(tags.nom) as tags from cours 
+        join categories on categories.idCategory = cours.categorie_id 
+        join user on user.id = cours.enseignant_id 
+        join cours_tags on cours.idCours = cours_tags.cours_id
+        join tags on tags.idTag = cours_tags.tag_id
+        group by cours.idCours";
+        $stmt = $db->prepare($sql);
+        if($stmt->execute()){
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);       
         }
     }
     public static function search($keyword)
@@ -108,9 +127,9 @@ abstract class course
         $stmt = $db->prepare($sql);
     
         if($stmt->execute([$this->titre, $this->description, $this->content, $this->contentVedeo, $this->categorieId, $id])) {
-            echo "Update successful!";
+            return true;
         } else {
-            echo "Error updating the course.";
+            return false;
         }
     }
     public static function deleteCourse($id){

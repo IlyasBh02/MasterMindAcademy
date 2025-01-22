@@ -1,7 +1,5 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start(); // Only start the session if it's not already active
-}
+require_once __DIR__."/../session_start.php";
 require_once __DIR__. "/./User.php";
 
 class Enseignant extends User{
@@ -60,10 +58,12 @@ class Enseignant extends User{
         from favoris f
         join user u1 on u1.id = f.etudiant_id
         join cours c on c.idCours = f.cours_id
-        join user u2 on u2.id = c.enseignant_id";
+        join user u2 on u2.id = c.enseignant_id
+        where u2.id = ?
+        ";
         $stmt = $db->prepare($sql);
 
-        if($stmt->execute()){
+        if($stmt->execute([$id])){
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     }
@@ -85,6 +85,12 @@ class Enseignant extends User{
         $stmt = $db->prepare($sql);
         $stmt->execute([$id]);
         return $stmt->fetchColumn();
+    }
+    public static function logout()
+    {
+        session_unset();
+        session_destroy();
+        header("Location: /edex-html/pages/enseignant/loginEnseignant.php");
     }
 }
 

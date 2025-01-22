@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__."/../session_start.php";
 require_once __DIR__. "/../class/Course.php";
 class TextCourse extends course{
     public function __construct($titre, $description, $content, $contentVedeo, $categorieId, $enseignantId,$price)
@@ -24,10 +25,14 @@ class TextCourse extends course{
                 $stmt->execute([$coursId, $tag]);
             }
             $db->commit();
-            echo "new vedeo course added";
+            $_SESSION['MessageStatus'] =  'success';
+            $_SESSION['Message'] = 'New text course added successfully!';
+            header("Location: /edex-html/pages/enseignant/MyCourses.php");
         } catch (Exception $e) {
             $db->rollBack();
-            echo "Failed to create course and attach tags: " . $e->getMessage();
+            $_SESSION['MessageStatus'] =  'error';
+            $_SESSION['Message'] = 'Failed to upload new course !';
+            header("Location: /edex-html/pages/enseignant/MyCourses.php");
         }
     }
 }
