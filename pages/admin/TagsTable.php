@@ -13,7 +13,7 @@ if(isset($_POST['submit'])){
     $tag = new tag($tago);
 
     if($tag->createTags()){
-        header("Location: /edex-html/pages/admin/TagsTable.php");
+        header("Location: /mastermindacademy/pages/admin/TagsTable.php");
     }
 
 }

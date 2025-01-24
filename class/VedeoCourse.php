@@ -29,12 +29,12 @@ class VedeoCourse extends course{
             $db->commit();
             $_SESSION['MessageStatus'] =  'success';
             $_SESSION['Message'] = 'New video course added successfully!';
-            header("Location: /edex-html/pages/enseignant/MyCourses.php");
+            header("Location: /mastermindacademy/pages/enseignant/MyCourses.php");
         } catch (Exception $e) {
             $db->rollBack();
             $_SESSION['MessageStatus'] =  'error';
             $_SESSION['Message'] = 'Failed to upload new course !';
-            header("Location: /edex-html/pages/enseignant/MyCourses.php");
+            header("Location: /mastermindacademy/pages/enseignant/MyCourses.php");
         }
     }
 }

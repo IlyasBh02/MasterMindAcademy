@@ -21,11 +21,11 @@ class Enseignant extends User{
                 $_SESSION['role'] = $user['role'];
                 if($user['status'] == 'active'){
                     $_SESSION['status'] == 'welcome';
-                    header("Location: /edex-html/pages/enseignant/MyCourses.php");
+                    header("Location: /mastermindacademy/pages/enseignant/MyCourses.php");
                 }
                 else{
                     $_SESSION['status'] == 'wait';
-                    header("Location: /edex-html/pages/enseignant/WaitingPage.php");
+                    header("Location: /mastermindacademy/pages/enseignant/WaitingPage.php");
                 }
                 exit();
             }
@@ -90,7 +90,7 @@ class Enseignant extends User{
     {
         session_unset();
         session_destroy();
-        header("Location: /edex-html/pages/enseignant/loginEnseignant.php");
+        header("Location: /mastermindacademy/pages/enseignant/loginEnseignant.php");
     }
 }
 

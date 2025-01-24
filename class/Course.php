@@ -14,7 +14,7 @@ abstract class course
     protected $price;
 
     public function __construct($titre, $description, $content, $contentVedeo, $categorieId, $enseignantId,$price,$type=null)
-    {
+    {   
         $this->titre = $titre;
         $this->description = $description;
         $this->content = $content;

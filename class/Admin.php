@@ -161,7 +161,7 @@ class Admin extends User{
     {
         session_unset();
         session_destroy();
-        header("Location: /edex-html/pages/admin/login.php");
+        header("Location: /mastermindacademy/pages/admin/login.php");
     }
 }
 

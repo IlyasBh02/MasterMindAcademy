@@ -15,7 +15,7 @@ if(isset($_POST['submit'])){
     $cat = new Category($categorie);
     $cat->createCategory();
     if($cat){
-        header("Location: /edex-html/pages/admin/CategoryTable.php");
+        header("Location: /mastermindacademy/pages/admin/CategoryTable.php");
     }
 }
 ?>
