@@ -18,9 +18,6 @@ if(isset($_POST['submit'])){
     // echo $role;
 }
 
-
-
-
 ?>
 
 <!DOCTYPE html>
