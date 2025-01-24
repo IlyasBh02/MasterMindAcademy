@@ -13,7 +13,7 @@ class TextCourse extends course{
 
         try {
             $db->beginTransaction();
-            $sql = "insert into cours(titre,description,contenu,vedeo,categorie_id,enseignant_id,price,type) values(?,?,?,?,?,?,?,?)";
+            $sql = "insert into cours(titre,description,contenu,video,categorie_id,enseignant_id,price,type) values(?,?,?,?,?,?,?,?)";
             $stmt = $db->prepare($sql);
             $stmt->execute([$this->titre, $this->description, $this->content, $this->contentVedeo, $this->categorieId, $this->enseignantId,$this->price,$this->type]);
 

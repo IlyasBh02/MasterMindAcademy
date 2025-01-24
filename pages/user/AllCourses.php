@@ -146,7 +146,7 @@ else{
                     <div class="group bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
                         <div class="relative">
                             <video width="320" height="240" alt="Course" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110">
-                                <source src="../../uploads/<?= $course['vedeo'] ?>" type="video/mp4">
+                                <source src="../../uploads/<?= $course['video'] ?>" >
                             </video>
                             <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
                                 Popular

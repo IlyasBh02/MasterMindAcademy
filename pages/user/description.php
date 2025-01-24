@@ -92,7 +92,7 @@ if(isset($_POST['submit'])){
                 poster=""
                 controls
             >
-                <source src="../../uploads/<?= $course['vedeo'] ?>" type="video/mp4">
+                <source src="../../uploads/<?= $course['video'] ?>" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
